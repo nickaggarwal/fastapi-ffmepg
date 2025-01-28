@@ -34,7 +34,11 @@ RUN pip3 install --break-system-packages fastapi==0.101.0 \
     accelerate
 
 
-RUN cd /app/nvidia/ \
+RUN mkdir /app/nvidia/ && cd /app/nvidia/ \
+    && git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git nv-codec-headers \
+    && cd nv-codec-headers && make install 
+
+RUN cd /var/nvidia/ \
     && git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg/ \
     && cd ffmpeg/ \
     && ./configure --enable-nonfree --enable-cuda-nvcc --enable-libnpp --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64 \

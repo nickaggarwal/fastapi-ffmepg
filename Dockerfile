@@ -38,7 +38,7 @@ RUN mkdir /app/nvidia/ && cd /app/nvidia/ \
     && git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git nv-codec-headers \
     && cd nv-codec-headers && make install 
 
-RUN cd /var/nvidia/ \
+RUN cd /app/nvidia/ \
     && git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg/ \
     && cd ffmpeg/ \
     && ./configure --enable-nonfree --enable-cuda-nvcc --enable-libnpp --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64 \

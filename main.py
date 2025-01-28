@@ -16,7 +16,7 @@ def health_check():
 
 @app.post("/v2/models/stable-diffusion/infer")
 def generate_image(request: InferRequest):
-    text = request.video_url
+    url = request.video_url
     subprocess.run(["wget", "-O", "input.mp4", url], check=True)
     # Transcode the file using ffmpeg
     subprocess.run(["ffmpeg", "-hwaccel", "cuda", "-i", "input.mp4", "output.mp4"], check=True)
